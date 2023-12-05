@@ -1,22 +1,32 @@
 import React from 'react'
-import {Navbar,Nav,Container} from 'react-bootstrap'
+import { Navbar, Nav, Container, Badge } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 
 function Header() {
   return (
     <>
-      <Navbar expand="lg" className="bg-body-tertiary">
-      <Container>
-        <Navbar.Brand><Link to={'/'} style={{textDecoration:'none',fontSize:'30px'}}>Cart Connect</Link></Navbar.Brand>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto">
-            <Nav.Link><Link to={'/wishlist'} style={{textDecoration:'none',fontWeight:'bold'}}><i className='fa-solid fa-heart text-danger me-2'></i>Wishlist</Link> </Nav.Link>
-            <Nav.Link><Link to={'/cart'} style={{textDecoration:'none',fontWeight:'bold'}}><i className=''>Cart</i></Link></Nav.Link>
-          </Nav>
-        </Navbar.Collapse>
-      </Container>
-    </Navbar>
+      <Navbar expand="lg" className="bg-primary" data-bs-theme="dark">
+        <Container>
+          <Navbar.Brand><Link to={'/'} style={{ textDecoration: 'none', fontSize: '30px' }}><i className="fa-solid fa-truck-fast me-2" />Shopify</Link></Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ms-auto">
+              <Nav.Link className='btn btn-primary me-2 '>
+                <Link to={'/wishlist'} className='d-flex justify-content-center align-items-center' style={{ textDecoration: 'none', fontWeight: 'bold' }}>
+                  <i className='fa-solid fa-heart text-danger me-2'></i> Wishlist
+                  <Badge className='ms-2' bg="light">10</Badge>
+                </Link>
+              </Nav.Link>
+              <Nav.Link className='btn btn-primary'>
+                <Link to={'/cart'} className='d-flex justify-content-center align-items-center' style={{ textDecoration: 'none', fontWeight: 'bold' }}>
+                  <i className='fa-solid fa-cart-plus me-2'></i>Cart
+                  <Badge className='ms-2' bg="light">10</Badge>
+                </Link>
+              </Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
+      </Navbar>
     </>
   )
 }
