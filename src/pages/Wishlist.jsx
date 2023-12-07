@@ -3,11 +3,19 @@ import { Col, Row,Card,Button } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
 import { removeFromWishList } from '../redux/slices/wishlistSlice';
+import { addToCart } from '../redux/slices/cartSlice';
 
 function Wishlist() {
   const wishlistArray=useSelector((state)=>state.wishlistReducer)
   const dispatch = useDispatch()
   // console.log(wishlistArray);
+
+  const handleWishlistCart = (product)=>{
+  // remove from wishlist & add to cart when clicking cart button on wishlist page
+    dispatch(addToCart(product))
+    dispatch(removeFromWishList(product.id))
+  }
+  
   return (
     <Row className='ms-5' style={{marginTop:'100px'}}>
       {
@@ -24,12 +32,12 @@ function Wishlist() {
               </Card.Text>
              <div className='d-flex justify-content-between'>
                 <Button onClick={()=>dispatch(removeFromWishList(product.id))} className='btn btn-light'><i className='fa-solid fa-trash text-danger fs-4'></i></Button>
-                <Button className='btn btn-light'><i className='fa-solid fa-cart-plus text-success fs-4'></i></Button>
+                <Button onClick={()=>handleWishlistCart(product)} className='btn btn-light'><i className='fa-solid fa-cart-plus text-success fs-4'></i></Button>
              </div>
             </Card.Body>
           </Card>
           </Col>
-        )):<div style={{height:'50vh'}} className='d-flex align-items-center justify-content-center flex-column'>
+        )):<div style={{height:'60vh'}} className='d-flex align-items-center justify-content-center flex-column'>
           <img style={{height:'200px'}} src="https://cdn.dribbble.com/users/1514097/screenshots/3550111/wishlist-icon.gif" alt="" />
           <h3 >Your Wishlist is Empty !!!!</h3>
           <Link to={'/'} style={{textDecoration:'none'}} className='btn btn-success rounded '>Back to Home</Link>

@@ -5,7 +5,8 @@ import { Link } from 'react-router-dom'
 
 function Header() {
    const wishlist = useSelector((state)=>state.wishlistReducer)
-   
+   const cart = useSelector((state)=>state.cartReducer)
+
    return (
     <>
       <Navbar style={{position:'fixed',width:'100%',zIndex:'1'}} expand="lg" className="bg-primary" data-bs-theme="dark">
@@ -23,7 +24,7 @@ function Header() {
               <Nav.Link className='btn btn-primary'>
                 <Link to={'/cart'} className='d-flex justify-content-center align-items-center' style={{ textDecoration: 'none', fontWeight: 'bold' }}>
                   <i className='fa-solid fa-cart-plus me-2'></i>Cart
-                  <Badge className='ms-2' bg="light">10</Badge>
+                  <Badge className='ms-2' bg="light">{cart.length}</Badge>
                 </Link>
               </Nav.Link>
             </Nav>
