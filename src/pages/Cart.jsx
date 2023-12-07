@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Table } from 'react-bootstrap'
 import { useDispatch, useSelector } from 'react-redux'
 import { emptyCart, removeFromCart } from '../redux/slices/cartSlice'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -12,6 +12,7 @@ function Cart() {
   const cartArray = useSelector((state) => state.cartReducer)
   const dispatch = useDispatch()
   // console.log(cartArray);
+  const navigate = useNavigate()
 
   const [total,setTotal] = useState(0)
   const getCartTotal = ()=>{
@@ -28,8 +29,7 @@ function Cart() {
   const handleCart = ()=>{
     dispatch(emptyCart())
     toast.success("Order Placed Succesfully!! Thanks For Purchasing With Us!!!")
-
-  }
+  } 
 
   return (
     <div className='container mb-5' style={{ marginTop: '100px' }} >
